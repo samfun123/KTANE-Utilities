@@ -44,12 +44,10 @@ class ModConfig<T> where T : new()
 			{
 				if (!File.Exists(settingsPath))
 				{
-					File.WriteAllText(settingsPath, SerializeSettings(Activator.CreateInstance<T>()));
+					File.WriteAllText(settingsPath, SerializeSettings(new T()));
 				}
 
-				T deserialized = JsonConvert.DeserializeObject<T>(File.ReadAllText(settingsPath));
-				if (deserialized == null)
-					throw new Exception("Deserialized null.");
+				T deserialized = JsonConvert.DeserializeObject<T>(File.ReadAllText(settingsPath)) ?? new T();
 
 				SuccessfulRead = true;
 				OnRead?.Invoke(null);
