@@ -11,8 +11,8 @@ Allows you to create and access modded APIs like exploding the bomb or getting t
 A better version of KMModSettings. Allows you to specify the type of your settings and it will converting to and from the JSON. Example:
 ```csharp
 ModConfig<TweakSettings> modConfig = new ModConfig<TweakSettings>("TweakSettings");
-TweaksSettings settings = modConfig.Settings; // Read settings.
-modConfig.Settings = settings; // Write settings.
+TweaksSettings settings = modConfig.Read(); // Read settings.
+modConfig.Write(settings); // Write settings.
 ```
 
 ## ReflectionHelper.cs
